@@ -1,0 +1,80 @@
+.reports-container {
+  padding: 30px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 25px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  border: 1px solid #cfcfcf;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.label {
+  margin-top: 10px;
+  color: #555;
+  font-size: 15px;
+}
+
+.value {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filters select,
+.filters input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.reports-table th,
+.reports-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.actions a {
+  margin-right: 10px;
+  color: #4169e1;
+  cursor: pointer;
+}
+
+.actions .edit {
+  color: #555;
+}

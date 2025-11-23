@@ -1,0 +1,64 @@
+<div class="login-wrapper">
+    <!-- Login form -->
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Barangay Incident<br>Reporting System</h1>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    formControlName="username"
+                    placeholder="Enter your username"
+                    required
+                    class="form-control"
+                    [class.is-invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+                >
+                <div class="invalid-feedback" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+                    Username is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    formControlName="password"
+                    placeholder="Enter your password"
+                    required
+                    class="form-control"
+                    [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                >
+                <div class="invalid-feedback" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    Password is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select 
+                    id="role" 
+                    formControlName="role" 
+                    required 
+                    class="form-control"
+                    [class.is-invalid]="loginForm.get('role')?.invalid && loginForm.get('role')?.touched"
+                >
+                    <option value="">Select a role</option>
+                    <option value="admin">Admin</option>
+                    <option value="officer">Barangay Officer</option>
+                    <option value="staff">Staff</option>
+                    <option value="resident">Resident</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="loginForm.get('role')?.invalid && loginForm.get('role')?.touched">
+                    Please select a role
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn" [disabled]="loginForm.invalid">LOGIN</button>
+        </form>
+    </div>
+</div>

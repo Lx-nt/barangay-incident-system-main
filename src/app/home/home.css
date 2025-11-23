@@ -1,0 +1,106 @@
+.home-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* SECTION 1 */
+.monthly-accomplishment {
+  background-color: #f4f6f8;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.monthly-accomplishment h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.stat-item .label {
+  font-weight: bold;
+}
+
+.stat-item .value {
+  margin-left: 5px;
+  color: #007bff;
+}
+
+/* SECTION 2 */
+.incidents-by-type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.incident-card {
+  flex: 1 1 150px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.incident-card .icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.incident-card .type {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.incident-card .count {
+  color: #28a745;
+}
+
+/* SECTION 3: Charts */
+.charts-section {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  justify-content: center; /* Center all charts */
+}
+
+.chart-card {
+  flex: 1 1 800px;      /* Very wide base */
+  max-width: 850px;     /* Limit max width */
+  background-color: #fff;
+  padding: 25px;        /* Slightly smaller padding to allow bigger canvas */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Center everything inside */
+}
+
+.chart-card h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.4rem;     /* Make text smaller so chart dominates */
+  color: #333;
+}
+
+.chart-card canvas {
+  width: 100% !important;   /* Full width of the box */
+  height: 100% !important;  /* Full height of the box */
+  max-height: 600px;        /* Optional max height */
+  display: block;
+  margin: 0 auto;
+}

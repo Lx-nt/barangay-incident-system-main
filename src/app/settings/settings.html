@@ -1,0 +1,132 @@
+<h1 class="page-title">Settings</h1>
+
+<div class="settings-tabs">
+    <div class="tab" [class.active]="activeTab === 'profile'" (click)="activeTab='profile'">Profile Info</div>
+    <div class="tab" [class.active]="activeTab === 'password'" (click)="activeTab='password'">Change Password</div>
+    <div class="tab" [class.active]="activeTab === 'system'" (click)="activeTab='system'">System Configuration</div>
+    <div class="tab" [class.active]="activeTab === 'barangay'" (click)="activeTab='barangay'">Barangay Info</div>
+    <div class="tab" [class.active]="activeTab === 'notifications'" (click)="activeTab='notifications'">Notifications</div>
+    <div class="tab" [class.active]="activeTab === 'users'" (click)="activeTab='users'">User Management</div>
+</div>
+
+<div class="settings-content">
+
+    <!-- Profile Info -->
+    <div class="tab-content" *ngIf="activeTab==='profile'">
+        <h2>Update Profile Info</h2>
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" [(ngModel)]="settings.profile.fullName" placeholder="Enter full name">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="settings.profile.email" placeholder="Enter email">
+        </div>
+        <button class="btn-save" (click)="saveProfile()">Save Profile</button>
+    </div>
+
+    <!-- Change Password -->
+    <div class="tab-content" *ngIf="activeTab==='password'">
+        <h2>Change Password</h2>
+        <div class="form-group">
+            <label>Current Password</label>
+            <input type="password" [(ngModel)]="settings.password.current" placeholder="Enter current password">
+        </div>
+        <div class="form-group">
+            <label>New Password</label>
+            <input type="password" [(ngModel)]="settings.password.new" placeholder="Enter new password">
+        </div>
+        <div class="form-group">
+            <label>Confirm New Password</label>
+            <input type="password" [(ngModel)]="settings.password.confirm" placeholder="Confirm new password">
+        </div>
+        <button class="btn-save" (click)="changePassword()">Change Password</button>
+    </div>
+
+    <!-- System Configuration -->
+    <div class="tab-content" *ngIf="activeTab==='system'">
+        <h2>System Configuration</h2>
+        <div class="form-group">
+            <label>System Mode</label>
+            <select [(ngModel)]="settings.system.mode">
+                <option value="live">Live</option>
+                <option value="maintenance">Maintenance</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Default Language</label>
+            <input type="text" [(ngModel)]="settings.system.language">
+        </div>
+        <button class="btn-save" (click)="saveSystemConfig()">Save Configuration</button>
+    </div>
+
+    <!-- Barangay Info -->
+    <div class="tab-content" *ngIf="activeTab==='barangay'">
+        <h2>Barangay Information</h2>
+        <div class="form-group">
+            <label>Barangay Name</label>
+            <input type="text" [(ngModel)]="settings.barangay.name">
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input type="text" [(ngModel)]="settings.barangay.address">
+        </div>
+        <div class="form-group">
+            <label>Contact Number</label>
+            <input type="text" [(ngModel)]="settings.barangay.contact">
+        </div>
+        <button class="btn-save" (click)="saveBarangayInfo()">Save Barangay Info</button>
+    </div>
+
+    <!-- Notification Preferences -->
+    <div class="tab-content" *ngIf="activeTab==='notifications'">
+        <h2>Notification Preferences</h2>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" [(ngModel)]="settings.notifications.email">
+                Email Notifications
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" [(ngModel)]="settings.notifications.sms">
+                SMS Notifications
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" [(ngModel)]="settings.notifications.push">
+                Push Notifications
+            </label>
+        </div>
+        <button class="btn-save" (click)="saveNotifications()">Save Preferences</button>
+    </div>
+
+    <!-- User Management -->
+    <div class="tab-content" *ngIf="activeTab==='users'">
+        <h2>User Management</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of settings.users">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>{{ user.status }}</td>
+                    <td>
+                        <a href="#" (click)="editUser(user)">Edit</a>
+                        <a href="#" (click)="deleteUser(user)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

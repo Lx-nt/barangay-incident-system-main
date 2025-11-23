@@ -1,0 +1,107 @@
+<h1 style="font-size: 48px; font-weight: 600; margin-bottom: 20px; color: #000;">Report an Incident</h1>
+
+<div class="step-tabs">
+    <div class="step-tab" [class.active]="currentStep === 1" (click)="goToStep(1)">Basic info</div>
+    <div class="step-tab" [class.active]="currentStep === 2" (click)="goToStep(2)">Details</div>
+    <div class="step-tab" [class.active]="currentStep === 3" (click)="goToStep(3)">Submit</div>
+</div>
+
+<form [formGroup]="incidentForm" (ngSubmit)="submitReport()">
+    <!-- Step 1: Basic Info -->
+    <div class="form-step" [class.active]="currentStep === 1">
+        <div class="form-group">
+            <label>Reporter Name</label>
+            <input type="text" formControlName="reporterName" placeholder="Enter your name">
+        </div>
+        
+        <div class="form-group">
+            <label>Contact Info</label>
+            <input type="text" formControlName="contactInfo" placeholder="Phone or email">
+        </div>
+        
+        <div class="form-group">
+            <label>Incident Type</label>
+            <select formControlName="incidentType">
+                <option value="">Select incident type</option>
+                <option value="Accident">Accident</option>
+                <option value="Fire">Fire</option>
+                <option value="Flooding">Flooding</option>
+                <option value="Crime">Crime</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        
+        <div class="form-actions">
+            <button type="button" class="btn-cancel" routerLink="/dashboard/home">Cancel</button>
+            <button type="button" class="btn-next" (click)="nextStep()">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 2: Details -->
+    <div class="form-step" [class.active]="currentStep === 2">
+        <div class="form-group">
+            <label>Date & Time of Incident</label>
+            <div class="datetime-inputs">
+                <input type="date" formControlName="incidentDate">
+                <input type="time" formControlName="incidentTime">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" formControlName="location" placeholder="Barangay Address">
+        </div>
+        
+        <div class="form-group">
+            <label>Description</label>
+            <textarea formControlName="description" placeholder="Describe the incident...."></textarea>
+        </div>
+        
+        <div class="form-actions">
+            <button type="button" class="btn-back" (click)="prevStep()">Back</button>
+            <button type="button" class="btn-next" (click)="nextStep()">Review</button>
+        </div>
+    </div>
+
+    <!-- Step 3: Review & Submit -->
+    <div class="form-step" [class.active]="currentStep === 3">
+        <h3>Review Your Report</h3>
+        
+        <div class="review-content" *ngIf="incidentForm.valid">
+            <div class="review-item">
+                <div class="review-label">Reporter Name</div>
+                <div class="review-value">{{ incidentForm.value.reporterName }}</div>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-label">Contact Info</div>
+                <div class="review-value">{{ incidentForm.value.contactInfo }}</div>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-label">Incident Type</div>
+                <div class="review-value">{{ incidentForm.value.incidentType }}</div>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-label">Date & Time</div>
+                <div class="review-value">{{ incidentForm.value.incidentDate }} at {{ incidentForm.value.incidentTime }}</div>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-label">Location</div>
+                <div class="review-value">{{ incidentForm.value.location }}</div>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-label">Description</div>
+                <div class="review-value">{{ incidentForm.value.description }}</div>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <button type="button" class="btn-back" (click)="prevStep()">Back</button>
+            <button type="submit" class="btn-submit">Confirm Submit Report</button>
+        </div>
+    </div>
+</form>

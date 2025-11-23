@@ -1,0 +1,55 @@
+<div class="summary-container">
+
+  <h1>Summary Report</h1>
+  <p class="subtitle">Generate PDF/Printable Reports for the Barangay Captin</p>
+
+  <div class="filters">
+
+    <div class="row">
+      <div class="field">
+        <label>Date Range</label>
+        <input type="date" placeholder="From" [(ngModel)]="fromDate">
+      </div>
+
+      <div class="field">
+        <label>&nbsp;</label>
+        <input type="date" placeholder="To" [(ngModel)]="toDate">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Report Type</label>
+        <select [(ngModel)]="reportType">
+          <option value="all">All</option>
+          <option value="incident">Incident</option>
+          <option value="complaint">Complaint</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Status</label>
+        <select [(ngModel)]="status">
+          <option value="all">All</option>
+          <option value="open">Open</option>
+          <option value="closed">Closed</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="generate-btn" (click)="generateReport()">Generate Report</button>
+  </div>
+
+  <div class="report-output">
+    <h3>Summary: {{ summaryText }}</h3>
+
+    <div class="placeholder-line"></div>
+    <div class="placeholder-line"></div>
+    <div class="placeholder-line"></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-outline">Download PDF</button>
+    <button class="btn-outline">Print</button>
+  </div>
+</div>

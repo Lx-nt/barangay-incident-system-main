@@ -1,0 +1,73 @@
+<div class="dashboard-wrapper">
+    
+    <!-- Mobile Toggle Button (hidden when menu is open) -->
+    <button *ngIf="isMobile && !mobileMenuOpen" 
+            class="mobile-menu-btn" 
+            (click)="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Backdrop (left half) -->
+    <div *ngIf="isMobile && mobileMenuOpen" 
+         class="sidebar-backdrop"
+         (click)="closeMobileMenu()">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" 
+         [class.collapsed]="!isMobile && isSidebarCollapsed"
+         [class.mobile-open]="isMobile && mobileMenuOpen">
+
+        <div class="sidebar-header">
+            <div class="sidebar-title">
+                <div class="sidebar-title-content">
+                    <span>Dashboard</span>
+                </div>
+            </div>
+            <button class="toggle-btn" (click)="toggleSidebar()">
+                 <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li>
+                <a routerLink="/dashboard/home" routerLinkActive="active" (click)="closeMobileMenu()">
+                    <i class="fas fa-home"></i> <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/dashboard/reports" routerLinkActive="active" (click)="closeMobileMenu()">
+                    <i class="fas fa-file"></i> <span>Reports</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/dashboard/add-report" routerLinkActive="active" (click)="closeMobileMenu()">
+                    <i class="fas fa-plus"></i> <span>Add Report</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/dashboard/summary-reports" routerLinkActive="active" (click)="closeMobileMenu()">
+                    <i class="fas fa-list-check"></i> <span>Summary Reports</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/dashboard/settings" routerLinkActive="active" (click)="closeMobileMenu()">
+                    <i class="fas fa-gear"></i> <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <img src="/👾😎.jpeg" alt="User" *ngIf="!isSidebarCollapsed">
+            <button class="logout-btn" (click)="logout()">
+                <i class="fas fa-sign-out-alt"></i> 
+                <span *ngIf="!isSidebarCollapsed">Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content" [class.collapsed]="!isMobile && isSidebarCollapsed">
+        <router-outlet></router-outlet>
+    </div>
+</div>

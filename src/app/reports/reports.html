@@ -1,0 +1,95 @@
+<div class="reports-container">
+  <h1>Hello, User</h1>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="icon">
+        <!-- Clipboard Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 2.25h6M9 2.25A2.25 2.25 0 006.75 4.5v0A2.25 2.25 0 009 6.75h6A2.25 2.25 0 0017.25 4.5v0A2.25 2.25 0 0015 2.25M9 2.25h6M4.5 6.75h15M6.75 6.75v12a2.25 2.25 0 002.25 2.25h6a2.25 2.25 0 002.25-2.25v-12" />
+        </svg>
+      </div>
+      <p class="label">Total Reports</p>
+      <p class="value">{{ totalReports }}</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="icon">
+        <!-- Clock Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6v6l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <p class="label">Pending</p>
+      <p class="value">{{ pending }}</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="icon">
+        <!-- Check Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
+      </div>
+      <p class="label">Resolved</p>
+      <p class="value">{{ resolved }}</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="icon">
+        <!-- Refresh Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4.5 12a7.5 7.5 0 0112.9-5.3L21 4.5m0 0v5.25m0-5.25h-5.25M19.5 12a7.5 7.5 0 01-12.9 5.3L3 19.5m0 0v-5.25m0 5.25h5.25" />
+        </svg>
+      </div>
+      <p class="label">Ongoing</p>
+      <p class="value">{{ ongoing }}</p>
+    </div>
+  </div>
+
+  <h2>Recents Reports</h2>
+
+  <div class="filters">
+    <select [(ngModel)]="statusFilter" (change)="applyFilters()">
+      <option value="">Filter by Status</option>
+      <option value="Pending">Pending</option>
+      <option value="Resolved">Resolved</option>
+      <option value="Ongoing">Ongoing</option>
+    </select>
+
+    <input type="date" [(ngModel)]="dateFilter" (change)="applyFilters()" placeholder="Search by Date" />
+  </div>
+
+  <table class="reports-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let r of filteredReports">
+        <td>{{ r.id }}</td>
+        <td>{{ r.type }}</td>
+        <td>{{ r.status }}</td>
+        <td>{{ r.date }}</td>
+        <td class="actions">
+          <a href="#">View</a>
+          <a href="#" class="edit">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
