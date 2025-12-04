@@ -1,0 +1,58 @@
+<div class="register-wrapper">
+
+    <div class="register-card">
+
+        <!-- LOGO -->
+        <img src="logo.png" class="register-logo">
+
+        <!-- FORM -->
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <!-- NAME -->
+            <label class="input-label">Name</label>
+            <div class="input-box">
+                <input type="text" placeholder="Enter your name" formControlName="name">
+            </div>
+
+            <!-- EMAIL -->
+            <label class="input-label">Email</label>
+            <div class="input-box">
+                <input type="email" placeholder="Enter your email" formControlName="email">
+            </div>
+
+            <!-- PASSWORD -->
+            <label class="input-label">Password</label>
+            <div class="input-box">
+                <input 
+                    [type]="showPassword ? 'text' : 'password'"
+                    placeholder="Create a password"
+                    formControlName="password">
+            </div>
+
+            <!-- CONFIRM PASSWORD -->
+            <label class="input-label">Confirm</label>
+            <div class="input-box">
+                <input 
+                    [type]="showConfirm ? 'text' : 'password'"
+                    placeholder="Confirm password"
+                    formControlName="confirm">
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <div class="error" *ngIf="registerForm.errors?.['mismatch']">
+                Passwords do not match.
+            </div>
+
+            <!-- REGISTER BUTTON -->
+            <button class="register-btn" type="submit" [disabled]="registerForm.invalid">
+                Register
+            </button>
+
+            <!-- LOGIN LINK -->
+            <div class="login-text">
+                Already have an account? 
+                <a (click)="goToLogin()">Login</a>
+            </div>
+        </form>
+    </div>
+</div>

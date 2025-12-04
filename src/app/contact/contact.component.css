@@ -1,0 +1,16 @@
+.contact-wrapper {
+  padding: 40px;
+  max-width: 600px;
+  margin: auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.contact-wrapper h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.contact-wrapper p {
+  font-size: 16px;
+  line-height: 1.6;
+}

@@ -11,7 +11,7 @@ import { RouterModule, RouterOutlet, Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   isSidebarCollapsed = false;
-  currentUser: any;
+  adminUser: any;
   isMobile = false;
   mobileMenuOpen = false;
 
@@ -19,17 +19,20 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.checkScreenSize();
-    
-    const userData = localStorage.getItem('currentUser');
-    if (userData) {
-      this.currentUser = JSON.parse(userData);
+
+    // 🔥 CHECK ADMIN SESSION INSTEAD OF USER SESSION
+    const adminData = localStorage.getItem('adminUser');
+
+    if (adminData) {
+      this.adminUser = JSON.parse(adminData);
     } else {
-      this.router.navigate(['/login']);
+      // ❗ NOT LOGGED IN AS ADMIN → GO BACK TO ADMIN LOGIN
+      this.router.navigate(['/admin-login']);
     }
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
+  @HostListener('window:resize')
+  onResize() {
     this.checkScreenSize();
   }
 
@@ -55,8 +58,9 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
-    console.log('User logged out successfully');
+    // 🔥 REMOVE ADMIN SESSION
+    localStorage.removeItem('adminUser');
+    this.router.navigate(['/admin-login']);
+    console.log('Admin logged out successfully');
   }
 }

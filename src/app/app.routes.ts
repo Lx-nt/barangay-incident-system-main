@@ -14,12 +14,33 @@ import { UserSettingsComponent } from './user-setting/user-settings.component';
 import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
 import { UserReportComponent } from './user-report/user-report.component';
 
+// REGISTER PAGE
+import { RegisterComponent } from './register/register.component';
+
+// ABOUT + CONTACT PAGES
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactComponent } from './contact/contact.component';
+
+// ⭐ ADMIN LOGIN PAGE
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+
 export const routes: Routes = [
 
+  // FIRST PAGE
+  { path: 'register', component: RegisterComponent },
+
+  // USER LOGIN
   { path: 'login', component: LoginComponent },
+
+  // ⭐ ADMIN LOGIN ROUTE
+  { path: 'admin-login', component: AdminLoginComponent },
 
   // PUBLIC LANDING PAGE
   { path: 'user-landing', component: UserLandingComponent },
+
+  // ABOUT US + CONTACT
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'contact', component: ContactComponent },
 
   // USER SIDEBAR AREA
   {
@@ -29,13 +50,11 @@ export const routes: Routes = [
       { path: 'settings', component: UserSettingsComponent },
       { path: 'settings/edit', component: UserEditProfileComponent },
       { path: 'report', component: UserReportComponent },
-
-      // ⭐ DEFAULT = ADD REPORT
       { path: '', redirectTo: 'report', pathMatch: 'full' }
     ]
   },
 
-  // ADMIN DASHBOARD
+  // ⭐ ADMIN DASHBOARD
   { 
     path: 'dashboard', 
     component: DashboardComponent,
@@ -49,6 +68,9 @@ export const routes: Routes = [
     ]
   },
 
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' }
+  // DEFAULT ROUTE
+  { path: '', redirectTo: '/register', pathMatch: 'full' },
+
+  // FALLBACK
+  { path: '**', redirectTo: '/register' }
 ];

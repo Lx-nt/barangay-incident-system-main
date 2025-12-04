@@ -1,5 +1,5 @@
 /* FULL BACKGROUND */
-.login-wrapper {
+.register-wrapper {
     min-height: 100vh;
     width: 100%;
     background-image: url('/ChatGPT Image Nov 16, 2025, 11_40_24 AM.png');
@@ -14,22 +14,21 @@
 }
 
 /* WHITE CARD */
-.login-card {
-    width: 420px;
+.register-card {
+    width: 460px;
     background: #fff;
-    padding: 32px 40px;
+    padding: 40px 50px;
     border-radius: 12px;
     text-align: center;
-
     box-shadow: 0 8px 40px rgba(0,0,0,0.15);
 }
 
-/* LOGO ON TOP */
-.login-logo {
+/* LOGO */
+.register-logo {
     width: 95px;
     height: 95px;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 /* LABEL */
@@ -42,7 +41,7 @@
     color: #333;
 }
 
-/* INPUT BOX */
+/* INPUT CONTAINER */
 .input-box {
     background: #fff;
     border: 1px solid #dcdcdc;
@@ -61,19 +60,16 @@
     outline: none;
 }
 
-.forgot {
-    text-align: right;
+/* ERROR */
+.error {
     margin-top: 6px;
-}
-
-.forgot a {
+    color: red;
     font-size: 12px;
-    color: #0a58ca;
-    text-decoration: none;
+    text-align: left;
 }
 
-/* LOGIN BUTTON */
-.login-btn {
+/* BUTTON */
+.register-btn {
     margin-top: 22px;
     width: 100%;
     height: 42px;
@@ -86,30 +82,31 @@
     transition: 0.2s;
 }
 
-.login-btn:hover:not(:disabled) {
+.register-btn:hover:not(:disabled) {
     background: #136228;
 }
 
-.login-btn:disabled {
+.register-btn:disabled {
     background: #9bb8a2;
     cursor: not-allowed;
 }
 
-/* SIGNUP TEXT */
-.signup-text {
+/* LOGIN TEXT */
+.login-text {
     margin-top: 14px;
     font-size: 13px;
 }
 
-.signup-text a {
+.login-text a {
     color: #0a58ca;
-    text-decoration: none;
+    cursor: pointer;
     font-weight: 600;
+    text-decoration: none;
 }
 
 /* RESPONSIVE */
 @media (max-width: 480px) {
-    .login-card {
+    .register-card {
         width: 90%;
         padding: 28px 26px;
     }
