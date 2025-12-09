@@ -1,77 +1,24 @@
 <div class="reports-container">
-  <h1>Hello, User</h1>
+  
+  <h1>Hello, Admin</h1>
+  <h2>Recent Reports</h2>
 
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="icon">
-        <!-- Clipboard Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
-             viewBox="0 0 24 24" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M9 2.25h6M9 2.25A2.25 2.25 0 006.75 4.5v0A2.25 2.25 0 009 6.75h6A2.25 2.25 0 0017.25 4.5v0A2.25 2.25 0 0015 2.25M9 2.25h6M4.5 6.75h15M6.75 6.75v12a2.25 2.25 0 002.25 2.25h6a2.25 2.25 0 002.25-2.25v-12" />
-        </svg>
-      </div>
-      <p class="label">Total Reports</p>
-      <p class="value">{{ totalReports }}</p>
-    </div>
-
-    <div class="stat-card">
-      <div class="icon">
-        <!-- Clock Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
-             viewBox="0 0 24 24" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 6v6l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-      </div>
-      <p class="label">Pending</p>
-      <p class="value">{{ pending }}</p>
-    </div>
-
-    <div class="stat-card">
-      <div class="icon">
-        <!-- Check Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
-             viewBox="0 0 24 24" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M4.5 12.75l6 6 9-13.5" />
-        </svg>
-      </div>
-      <p class="label">Resolved</p>
-      <p class="value">{{ resolved }}</p>
-    </div>
-
-    <div class="stat-card">
-      <div class="icon">
-        <!-- Refresh Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
-             viewBox="0 0 24 24" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M4.5 12a7.5 7.5 0 0112.9-5.3L21 4.5m0 0v5.25m0-5.25h-5.25M19.5 12a7.5 7.5 0 01-12.9 5.3L3 19.5m0 0v-5.25m0 5.25h5.25" />
-        </svg>
-      </div>
-      <p class="label">Ongoing</p>
-      <p class="value">{{ ongoing }}</p>
-    </div>
-  </div>
-
-  <h2>Recents Reports</h2>
-
-  <div class="filters">
+  <!-- FILTERS ON RIGHT -->
+  <div class="filter-row">
     <select [(ngModel)]="statusFilter" (change)="applyFilters()">
       <option value="">Filter by Status</option>
       <option value="Pending">Pending</option>
-      <option value="Resolved">Resolved</option>
       <option value="Ongoing">Ongoing</option>
+      <option value="Resolved">Resolved</option>
     </select>
 
-    <input type="date" [(ngModel)]="dateFilter" (change)="applyFilters()" placeholder="Search by Date" />
+    <input type="date" [(ngModel)]="dateFilter" (change)="applyFilters()" />
   </div>
 
+  <!-- TABLE -->
   <table class="reports-table">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Type</th>
         <th>Status</th>
         <th>Date</th>
@@ -81,15 +28,68 @@
 
     <tbody>
       <tr *ngFor="let r of filteredReports">
-        <td>{{ r.id }}</td>
         <td>{{ r.type }}</td>
         <td>{{ r.status }}</td>
         <td>{{ r.date }}</td>
+
         <td class="actions">
-          <a href="#">View</a>
-          <a href="#" class="edit">Edit</a>
+          <a (click)="openView(r)">View</a>
+          <a (click)="openEdit(r)">Edit</a>
+          <a (click)="openDelete(r)">Delete</a>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <!-- VIEW MODAL -->
+  <div *ngIf="viewReport" class="modal-backdrop">
+    <div class="modal-box">
+      <h3>Report Details</h3>
+
+      <p><strong>Name:</strong> {{ viewReport.name }}</p>
+      <p><strong>Incident Type:</strong> {{ viewReport.type }}</p>
+      <p><strong>Category:</strong> {{ viewReport.category }}</p>
+      <p><strong>Date:</strong> {{ viewReport.date }}</p>
+      <p><strong>Time:</strong> {{ viewReport.time }}</p>
+      <p><strong>Location:</strong> {{ viewReport.location }}</p>
+      <p><strong>Description:</strong> {{ viewReport.description }}</p>
+
+      <div class="modal-buttons">
+        <button class="btn-cancel" (click)="closeView()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div *ngIf="selectedReport" class="modal-backdrop">
+    <div class="modal-box">
+      <h3>Edit Status</h3>
+
+      <label>Status:</label>
+      <select [(ngModel)]="selectedReport.status" class="status-select">
+        <option value="Pending">Pending</option>
+        <option value="Ongoing">Ongoing</option>
+        <option value="Resolved">Resolved</option>
+      </select>
+
+      <div class="modal-buttons">
+        <button class="btn-save" (click)="saveEdit()">Save</button>
+        <button class="btn-cancel" (click)="closeEdit()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRMATION MODAL -->
+  <div *ngIf="deleteTarget" class="modal-backdrop">
+    <div class="delete-modal-box">
+      <h3>Delete Report?</h3>
+      <p>Are you sure you want to delete this report?</p>
+
+      <div class="modal-buttons">
+        <button class="btn-delete" (click)="confirmDelete()">Delete</button>
+        <button class="btn-cancel" (click)="cancelDelete()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -1,67 +1,90 @@
 <div class="home-container">
 
-  <!-- SECTION 1: Monthly Accomplishment -->
-  <div class="monthly-accomplishment card">
-    <h2>Accomplishment for November 2025</h2>
-    <div class="stats">
-      <div class="stat-item">
-        <span class="label">Total Incidents:</span>
-        <span class="value">38</span>
+  <h1 class="page-title">Hello, Admin</h1>
+
+  <!-- SUMMARY CARDS -->
+  <div class="cards-grid">
+
+    <div class="summary-card">
+      <div class="icon-wrapper icon-neutral">
+        <svg viewBox="0 0 24 24" class="summary-icon">
+          <rect x="4" y="8" width="16" height="11" rx="2" ry="2" fill="none" stroke="black" stroke-width="1.7"/>
+          <path d="M9 8V6.5C9 5.12 10.12 4 11.5 4h1c1.38 0 2.5 1.12 2.5 2.5V8" fill="none" stroke="black" stroke-width="1.7"/>
+          <path d="M10 12h4" fill="none" stroke="black" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
       </div>
-      <div class="stat-item">
-        <span class="label">Resolved:</span>
-        <span class="value">30</span>
-      </div>
-      <div class="stat-item">
-        <span class="label">Ongoing:</span>
-        <span class="value">5</span>
-      </div>
-      <div class="stat-item">
-        <span class="label">Pending:</span>
-        <span class="value">3</span>
+      <div class="card-text">
+        <span class="card-label">Total Reports</span>
+        <span class="card-value">{{ totalReports }}</span>
       </div>
     </div>
+
+    <div class="summary-card">
+      <div class="icon-wrapper icon-dark">
+        <svg viewBox="0 0 24 24" class="summary-icon">
+          <circle cx="12" cy="12" r="7" fill="none" stroke="black" stroke-width="1.7"/>
+          <path d="M12 9v4l2 1" fill="none" stroke="black" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-label">Pending</span>
+        <span class="card-value">{{ pending }}</span>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="icon-wrapper icon-neutral">
+        <svg viewBox="0 0 24 24" class="summary-icon">
+          <rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="black" stroke-width="1.7"/>
+          <path d="M8 12.5l3 3 5-6" fill="none" stroke="black" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-label">Resolved</span>
+        <span class="card-value">{{ resolved }}</span>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="icon-wrapper icon-purple">
+        <svg viewBox="0 0 24 24" class="summary-icon">
+          <path d="M7 7h3M10 7V4M17 17h-3M14 17v3" fill="none" stroke="#3b2c85" stroke-width="1.7"/>
+          <path d="M8 17a5 5 0 01-2-4 5 5 0 015-5h7" fill="none" stroke="#3b2c85" stroke-width="1.7"/>
+          <path d="M16 7a5 5 0 012 4 5 5 0 01-5 5H6" fill="none" stroke="#3b2c85" stroke-width="1.7"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-label">Ongoing</span>
+        <span class="card-value">{{ ongoing }}</span>
+      </div>
+    </div>
+
   </div>
 
-  <!-- SECTION 2: Incidents by Type -->
-  <div class="incidents-by-type">
-    <div class="incident-card">
-      <span class="icon">🔥</span>
-      <span class="type">Fire Incidents</span>
-      <span class="count">6 this month</span>
-    </div>
-    <div class="incident-card">
-      <span class="icon">🌧️</span>
-      <span class="type">Flooding Incidents</span>
-      <span class="count">4 this month</span>
-    </div>
-    <div class="incident-card">
-      <span class="icon">👊</span>
-      <span class="type">Physical Altercation</span>
-      <span class="count">12 this month</span>
-    </div>
-    <div class="incident-card">
-      <span class="icon">🚨</span>
-      <span class="type">Theft / Crime</span>
-      <span class="count">7 this month</span>
-    </div>
-    <div class="incident-card">
-      <span class="icon">🐱</span>
-      <span class="type">Animal-related Reports</span>
-      <span class="count">3 this month</span>
-    </div>
-  </div>
+  <!-- RECENT REPORTS TABLE -->
+  <h2 class="section-title">Recent Reports</h2>
 
-  <!-- SECTION 3: Charts -->
-  <div class="charts-section">
-    <div class="chart-card">
-      <h3>Incidents Per Month</h3>
-      <canvas id="monthlyBarChart"></canvas>
-    </div>
-    <div class="chart-card">
-      <h3>Incident Distribution by Type</h3>
-      <canvas id="incidentPieChart"></canvas>
-    </div>
+  <div class="reports-card">
+    <table class="reports-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Date & Time</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let r of recentReports">
+          <td><span class="type-icon">{{ r.icon }}</span> {{ r.type }}</td>
+          <td><span class="status-badge" [ngClass]="r.status.toLowerCase()">{{ r.status }}</span></td>
+          <td>{{ r.datetime }}</td>
+          <td>{{ r.location }}</td>
+        </tr>
+      </tbody>
+
+    </table>
   </div>
 
 </div>

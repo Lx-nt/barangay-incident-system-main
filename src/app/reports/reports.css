@@ -1,80 +1,158 @@
 .reports-container {
-  padding: 30px;
+  padding: 40px 60px;
+  font-family: Arial, sans-serif;
 }
 
+/* Title */
 h1 {
-  font-size: 36px;
-  margin-bottom: 25px;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  margin-bottom: 30px;
-}
-
-.stat-card {
-  border: 1px solid #cfcfcf;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.icon svg {
-  width: 32px;
-  height: 32px;
-}
-
-.label {
-  margin-top: 10px;
-  color: #555;
-  font-size: 15px;
-}
-
-.value {
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 h2 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 24px;
+  margin-top: 10px;
+  font-size: 32px;
+  font-weight: 600;
 }
 
-.filters {
+/* Filters Right */
+.filter-row {
   display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.filters select,
-.filters input {
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+.filter-row select,
+.filter-row input {
+  padding: 12px 18px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid #bbb;
 }
 
+/* LARGE TABLE */
 .reports-table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 12px;
+  font-size: 22px;
+  border-radius: 14px;
+  border: 2px solid #ddd;
   overflow: hidden;
-  border: 1px solid #ddd;
 }
 
-.reports-table th,
+.reports-table th {
+  background: #f3f3f3;
+  padding: 24px;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+}
+
 .reports-table td {
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+  padding: 24px;
+  border-bottom: 1px solid #e2e2e2;
 }
 
+/* Actions */
 .actions a {
-  margin-right: 10px;
-  color: #4169e1;
+  margin-right: 18px;
+  font-size: 20px;
+  color: #673de6;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.actions .edit {
-  color: #555;
+.actions a:hover {
+  text-decoration: underline;
+}
+
+/* ----- MODALS ----- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.delete-modal-box {
+  background: #ffffff;        /* PURE WHITE BACKGROUND */
+  width: 420px;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  animation: fadeIn 0.2s ease;
+  text-align: center;
+  z-index: 1000;              /* ENSURE IT FLOATS ABOVE EVERYTHING */
+  position: relative;         /* FIXES WEIRD LAYERING */
+}
+
+.delete-modal-box h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.delete-modal-box p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #444; /* Slightly darker for readability */
+}
+
+/* Edit Dropdown */
+.status-select {
+  width: 100%;
+  padding: 14px;
+  font-size: 20px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.btn-save {
+  background: #4CAF50;
+  color: white;
+  padding: 12px 22px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-cancel {
+  background: #ccc;
+  padding: 12px 22px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-delete {
+  background: #e63946;
+  color: white;
+  padding: 12px 22px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
