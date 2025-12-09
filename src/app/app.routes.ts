@@ -21,9 +21,6 @@ import { RegisterComponent } from './register/register.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 
-// ⭐ ADMIN LOGIN PAGE
-import { AdminLoginComponent } from './admin-login/admin-login.component';
-
 export const routes: Routes = [
 
   // FIRST PAGE
