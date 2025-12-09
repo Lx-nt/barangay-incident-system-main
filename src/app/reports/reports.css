@@ -67,7 +67,7 @@ h2 {
   text-decoration: underline;
 }
 
-/* ----- MODALS ----- */
+/* ----- MODAL BACKDROP ----- */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -81,32 +81,32 @@ h2 {
   z-index: 999;
 }
 
-.delete-modal-box {
-  background: #ffffff;        /* PURE WHITE BACKGROUND */
-  width: 420px;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+/* ----- GENERAL MODAL BOX ----- */
+.modal-box {
+  background: #ffffff !important;
+  width: 480px;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   animation: fadeIn 0.2s ease;
-  text-align: center;
-  z-index: 1000;              /* ENSURE IT FLOATS ABOVE EVERYTHING */
-  position: relative;         /* FIXES WEIRD LAYERING */
+  position: relative;
+  z-index: 1000;
 }
 
-.delete-modal-box h3 {
-  font-size: 24px;
+.modal-box h3 {
+  margin-bottom: 20px;
+  font-size: 26px;
   font-weight: 700;
-  margin-bottom: 10px;
   color: #222;
 }
 
-.delete-modal-box p {
-  font-size: 16px;
-  margin-bottom: 20px;
-  color: #444; /* Slightly darker for readability */
+.modal-box p {
+  margin: 10px 0;
+  font-size: 20px;
+  color: #444;
 }
 
-/* Edit Dropdown */
+/* ----- EDIT DROPDOWN ----- */
 .status-select {
   width: 100%;
   padding: 14px;
@@ -116,7 +116,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Buttons */
+/* ----- BUTTONS ----- */
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
@@ -152,6 +152,33 @@ h2 {
   border: none;
 }
 
+/* ----- DELETE MODAL (white background also!) ----- */
+.delete-modal-box {
+  background: #ffffff !important;
+  width: 460px;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  animation: fadeIn 0.2s ease;
+  text-align: center;
+  position: relative;
+  z-index: 1000;
+}
+
+.delete-modal-box h3 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.delete-modal-box p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: #444;
+}
+
+/* ANIMATION */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
